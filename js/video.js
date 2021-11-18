@@ -1,13 +1,9 @@
-var video;
+var video = document.getElementById("assets/marchingband.mov");;
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 
 });
-
-// document.querySelector("#play").addEventListener("click", function() {
-// 	console.log("Play Video");
-// });
 
 document.querySelector("#play").addEventListener("click", function() {
 	video.play();
