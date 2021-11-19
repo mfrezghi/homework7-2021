@@ -1,52 +1,61 @@
-var video = document.getElementById("player1");;
+var video = document.getElementById("#player1");;
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window")
 });
 
-document.getElementById("#play").addEventListener("click", function() {
-	video.play();
+document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
+	video.play();
+	document.querySelector("#volume").innerHTML = video.volume*100 + "%";
 });
 
-document.getElementById("#pause").addEventListener("click", function() {
-	video.pause();
+document.querySelector("#pause").addEventListener("click", function() {
 	console.log("Pause Video");
+	video.pause();
 });
 
 document.querySelector("#slower").addEventListener("click", function() {
-	video.playbackRate -= 0.05;
-	console.log("Slow Down Video");
+	video.playbackRate /= 1.05;
+	console.log("New speed = " + video.playbackRate);
 });
 
 document.querySelector("#faster").addEventListener("click", function() {
-	video.playbackRate += 0.05;
-	console.log("Speed Up Video");
+	video.playbackRate *= 1.05;
+	console.log("New speed = " + video.playbackRate);
 });
 
 document.querySelector("#skip").addEventListener("click", function() {
 	video.currentTime += 15;
-	console.log("Skip Ahead Video");
+	if (video.currentTime >= video.duration) {
+		console.log("Returning to begininning")
+		video.currentTime = 0;
+	}
+	console.log("Current = " + video.currentTime);
 });
 
 document.querySelector("#mute").addEventListener("click", function() {
-	video.muted = !video.muted;
-	console.log("Mute Video");
+	if (video.muted) {
+		video.muted = false;
+		document.querySelector("#mute").innerHTML = "Mute";
+	}
+	else {
+		video.muted = true;
+		document.querySelector("#mute").innerHTML = "Unmute";
 });
 
 document.querySelector("#slider").addEventListener("input", function() {
-	video.volume = volumeSlider.value;
-	console.log("Volume Slider");
+	video.volume = thgis.value/100;
+	console.log("Volume = " + (this.value/100));
+	document.querySelector("#volume").innerHTML = video.volume*100 + "%";
 });
 
 document.querySelector("#vintage").addEventListener("click", function() {
-	video.classList.toggle("oldSchool");
-	console.log("Styled Video");
+	video.classList.add("oldSchool");
 });
 
-document.querySelector("#classList").addEventListener("click", function() {
-	video.classList.remove("orig");
-	console.log("Original Video");
+document.querySelector("#orig").addEventListener("click", function() {
+	video.classList.remove("oldSchool");
 });
 
 
